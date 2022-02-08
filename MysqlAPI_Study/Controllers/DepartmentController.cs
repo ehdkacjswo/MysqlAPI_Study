@@ -42,6 +42,28 @@ namespace MysqlAPI_Study.Controllers
             }
         }
 
-        
+        [HttpPost]
+        public JsonResult Put(Department dep)
+        {
+            string query = $"insert into mytestdb.Department (DepartmentName) values (\"{dep.DepartmentName}\");";
+
+            DataTable table = new DataTable();
+            string sqlDataSource = _configuration.GetConnectionString("EmployeeAppCon");
+            MySqlDataReader myReader;
+            using (MySqlConnection mycon = new MySqlConnection(sqlDataSource))
+            {
+                mycon.Open();
+
+                using (MySqlCommand myCommand = new MySqlCommand(query, mycon))
+                {
+                    if (myCommand.ExecuteNonQuery() == 1)
+                    {
+                        return new JsonResult("Addition Succeed");
+                    }
+
+                    else return new JsonResult("Addition Failed");
+                }
+            }
+        }
     }
 }

@@ -361,3 +361,7 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# Git server credential
+appsettings.json
+MysqlAPI_Study/appsettings.json
